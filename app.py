@@ -1,9 +1,9 @@
 from flask import Flask, request
 from app_service import AppService
 import json
+import os 
 
 app = Flask(__name__)
-appService = AppService();
 
 
 @app.route('/')
@@ -32,3 +32,6 @@ def update_task():
 def delete_task(id):
     return appService.delete_task(id)
 
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=True, host='0.0.0.0', port=port)
